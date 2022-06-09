@@ -1,0 +1,8 @@
+version: "3.8"
+services: 
+ deepakapp1: # name of app which can be anything 
+  image: deepakhcl:appv1 # name of iamge i want to build
+  build: . # location of dockerfile 
+  container_name: depakc14
+  ports:
+  - 1111:80
