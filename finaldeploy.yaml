@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deepakfinal-deploy
+  name: deepakfinal-deploy
+  namespace: deepak-project # add this line 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deepakfinal-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: deepakfinal-deploy
+    spec:
+      containers:
+      - image: docker.io/deepak26091997/deepakhcl
+        name: deepakhcl1
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always 
+        resources: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deepakfinal-deploy
+  name: deepaklb1234
+  namespace: deepak-project # add this line 
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: deepakfinal-deploy
+  type: NodePort
+status:
+  loadBalancer: {}
+
